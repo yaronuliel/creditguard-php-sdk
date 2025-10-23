@@ -26,7 +26,7 @@ $doDealRedirectRequest
     //->setPaymentsInterest('0 2000 3000 4000 5000')
     ->setCurrency(Currency::ILS)
     ->setPaymentPageCustomTexts([
-        'cg-form-title' => 'הזין את פרטי האשראי להלןניתן ל'
+        'cg-form-title' => 'נא להזין את פרטי האשראי בטופס הבא'
     ])
 //    ->setPaymentPageKeepCreditCardDetails(false)
 //    ->setPaymentPageUiLang('eng')
