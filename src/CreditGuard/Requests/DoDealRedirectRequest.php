@@ -966,11 +966,16 @@ class DoDealRedirectRequest extends AbstractRequest
         return $this->updatePaymentPageData();
     }
 
+
+    public function setPaymentPageCss(string $cssContent) {
+        $this->uiCustomData['customStyle'] = $cssContent;
+        return $this->updatePaymentPageData();
+    }
+
     public function setPaymentPageCssFromFile(string $filePath) {
         if(file_exists($filePath) && is_readable($filePath)) {
             $cssContent = file_get_contents($filePath);
-            $this->uiCustomData['customStyle'] = $cssContent;
-            return $this->updatePaymentPageData();
+            return $this->setPaymentPageCss($cssContent);
         }
         return $this;
     }
