@@ -30,6 +30,10 @@ $doDealRedirectRequest
 
 /** @var \CreditGuard\Responses\DoDealRedirectResponse $response */
 $response = $cg->execute($doDealRedirectRequest);
-header('Location: ' . $response->getMpiHostedPageUrl());
+if(php_sapi_name() != 'cli') {
+    header('Location: ' . $response->getMpiHostedPageUrl());
+} else {
+    echo 'Redirect the customer to: ' . $response->getMpiHostedPageUrl() . PHP_EOL;
+}
 
 exit;

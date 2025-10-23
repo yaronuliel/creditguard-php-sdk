@@ -90,7 +90,7 @@ abstract class AbstractRequest
      *
      * @return $this
      */
-    public function setRequestId(string $value = null)
+    public function setRequestId(?string $value = null)
     {
         $this->xml->request->requestId = (string)$value;
         return $this;
@@ -151,7 +151,7 @@ abstract class AbstractRequest
      *
      * @return $this
      */
-    public function setVersion(string $value = null)
+    public function setVersion(?string $value = null)
     {
         $this->xml->request->version = (string)$value;
         return $this;
@@ -180,7 +180,7 @@ abstract class AbstractRequest
      *
      * @return $this
      */
-    public function setLanguage(string $value = null)
+    public function setLanguage(?string $value = null)
     {
         $this->xml->request->language = (string)$value;
         return $this;
@@ -322,7 +322,7 @@ abstract class AbstractRequest
      *
      * @return string|null
      */
-    public function get(string $parameter, $type = 'string', $default = null)
+    public function get(string $parameter, string $type = 'string', ?string $default = null)
     {
         if (!isset($this->commandXml->{$parameter})) {
             return $default;

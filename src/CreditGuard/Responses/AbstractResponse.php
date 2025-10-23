@@ -89,7 +89,7 @@ class AbstractResponse
      *
      * @return Carbon|null|mixed
      */
-    public static function normalize($value, $type = 'string', $default = null)
+    public static function normalize($value, string $type = 'string', ?string $default = null)
     {
         switch ($type) {
             case 'string':

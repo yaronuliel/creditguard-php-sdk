@@ -33,7 +33,7 @@ class CreditGuard
      * @param string      $terminalId Credit Guard terminal ID
      * @param string|null $mid        Credit Guard payment page ID (mid)
      */
-    public function __construct(string $url, string $user, string $password, string $terminalId, string $mid = null)
+    public function __construct(string $url, string $user, string $password, string $terminalId, ?string $mid = null)
     {
         $this->url        = $url;
         $this->user       = $user;
