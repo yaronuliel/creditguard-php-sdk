@@ -9,6 +9,15 @@ class DoDealRedirectRequest extends AbstractRequest
 {
     protected $command = 'doDeal';
 
+    protected $uiCustomData = [];
+
+    protected $frameAncestorURLs = [];
+
+    /**
+     * @var \SimpleXMLElement | null
+     */
+    protected $paymentPageData = null;
+
     public function __construct()
     {
         parent::__construct();
@@ -952,4 +961,60 @@ class DoDealRedirectRequest extends AbstractRequest
      */
     public function setMainTerminalNumber(string $value) { return $this->set('mainTerminalNumber', $value); }
 
+    public function setBusinessLogoUrl(string $value) {
+        $this->uiCustomData['businessLogoUrl'] = $value;
+        return $this->updatePaymentPageData();
+    }
+
+    public function setPaymentPageCssFromFile(string $filePath) {
+        if(file_exists($filePath) && is_readable($filePath)) {
+            $cssContent = file_get_contents($filePath);
+            $this->uiCustomData['customStyle'] = $cssContent;
+            return $this->updatePaymentPageData();
+        }
+        return $this;
+    }
+
+    public function setPaymentPageCustomTexts(array $customTexts) {
+        $this->uiCustomData['customText'] = $customTexts;
+        return $this->updatePaymentPageData();
+    }
+
+    public function setPaymentPageUiLang(string $langCode) {
+        $this->uiCustomData['uiLang'] = $langCode;
+        return $this->updatePaymentPageData();
+    }
+
+    public function setPaymentPageKeepCreditCardDetails(bool $keepDetails) {
+        $this->uiCustomData['keepCCDetails'] = $keepDetails;
+        return $this->updatePaymentPageData();
+    }
+
+    public function setPaymentPageAncestorURLs(array $ancestorUrls) {
+        $this->frameAncestorURLs = $ancestorUrls;
+        return $this->updatePaymentPageData();
+    }
+
+    public function setPaymentPageAncestorURL(string $url) {
+        return $this->setPaymentPageAncestorURLs([$url]);
+    }
+
+    protected function updatePaymentPageData() {
+        $config = [];
+
+        if(!empty($this->frameAncestorURLs)) {
+            $config['frameAncestorURLs'] = implode(' ', $this->frameAncestorURLs);
+        }
+
+        if(!empty($this->uiCustomData)) {
+            $config['uiCustomData'] = $this->uiCustomData;
+        }
+
+        if(empty($this->paymentPageData)) {
+            $this->paymentPageData = $this->commandXml->addChild('paymentPageData');
+        }
+
+        $this->paymentPageData->ppsJSONConfig = json_encode($config);
+        return $this;
+    }
 }

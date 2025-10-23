@@ -1,0 +1,14 @@
+:root{
+    --cg-prime: #1C2333;
+    --cg-second: #00617F;
+    --cg-turquois: #0EAAD1;
+    --cg-suc: #55CF63;
+    --cg-err: #EE4D3B;
+    --cg-gray: #B9B9BA;
+    --cg-lightgray: #F6F6F6;
+}
+
+body {
+    background: red;
+    opacity: .4;
+}
