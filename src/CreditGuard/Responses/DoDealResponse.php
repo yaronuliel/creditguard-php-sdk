@@ -392,4 +392,10 @@ class DoDealResponse extends AbstractResponse
         return (array)$this->doDeal->{$field} ?: [];
     }
 
+    public function getSessionCD()
+    {
+        $field = static::_getterToField(__FUNCTION__);
+        return (string)$this->doDeal->{$field} ?: null;
+    }
+
 }
