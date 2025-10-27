@@ -1000,6 +1000,10 @@ class DoDealRedirectRequest extends AbstractRequest
         return $this->updatePaymentPageData();
     }
 
+    public function setKeepCD(bool $value) {
+        return $this->set('keepCD', $value ? 1 : 0); 
+    }
+
     public function setPaymentPageAncestorURL(string $url) {
         return $this->setPaymentPageAncestorURLs([$url]);
     }
