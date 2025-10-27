@@ -816,4 +816,40 @@ class DoDealRequest extends AbstractRequest
         return $this;
     }
 
+    /**
+     * Session code (CD)
+     *
+     * @return string
+     */
+    public function getSessionCD() { return $this->get('sessionCD'); }
+
+
+    /**
+     * Session code (CD)
+     *
+     * @param string $value
+     *
+     * @return static
+     */
+    public function setSessionCD(string $value) { return $this->set('sessionCD', $value); }
+
+    /**
+    *UseCD (CD)
+
+    * @return boolean
+    */
+    public function getUseCD() { return (bool)$this->get('useCD'); }
+
+
+
+    /**
+    * UseCD (CD)
+    *
+    * @param boolean $value
+    *
+    * @return static
+    */
+    public function setUseCD(bool $value) { return $this->set('useCD', $value ? 1 : 0); }
+
+
 }
