@@ -122,4 +122,10 @@ class InquireMpiTransactionsResponse extends AbstractResponse
         $field = static::_getterToField(__FUNCTION__);
         return (string)$this->inquireTransactions->row->{$field} ?: null;
     }
+
+    public function getSessionCD()
+    {
+        $xml = $this->getCgGatewayResponseXML()->tosXml();
+        return (string)($xml->response->doDeal->sessionCD ?? '') ?: null;
+    }
 }
