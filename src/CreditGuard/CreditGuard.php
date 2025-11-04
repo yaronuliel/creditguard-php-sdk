@@ -70,14 +70,18 @@ class CreditGuard
     {
         $this->autoFill($request);
 
-        $body = 'user=' . $this->user . '&password='
-            . $this->password . '&int_in=' . (string)$request;
+        $fields = [
+            'user' => $this->user,
+            'password' => $this->password,
+            'int_in' => (string) $request,
+        ];
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_FAILONERROR, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields, '', '&', PHP_QUERY_RFC3986));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/x-www-form-urlencoded; charset=UTF-8']);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_FAILONERROR, true);
