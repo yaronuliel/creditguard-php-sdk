@@ -1000,11 +1000,11 @@ class DoDealRedirectRequest extends AbstractRequest
         return $this->updatePaymentPageData();
     }
 
-    public function setUiCustomOption(string $key, bool $disabled = false) {
-        if(empty($key)) {
+    public function setUiCustomOption(string $key, $value) {
+        if(empty($key) || empty($value)) {
             return $this;
         }
-        $this->uiCustomData[$key] = $disabled;
+        $this->uiCustomData[$key] = $value;
         return $this->updatePaymentPageData();
     }
 
