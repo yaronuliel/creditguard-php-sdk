@@ -1001,7 +1001,7 @@ class DoDealRedirectRequest extends AbstractRequest
     }
 
     public function setUiCustomOption(string $key, $value) {
-        if(empty($key) || empty($value)) {
+        if(empty($key)) {
             return $this;
         }
         $this->uiCustomData[$key] = $value;
