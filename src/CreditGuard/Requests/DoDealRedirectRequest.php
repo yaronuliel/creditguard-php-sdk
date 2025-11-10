@@ -205,6 +205,23 @@ class DoDealRedirectRequest extends AbstractRequest
      */
     public function setTotal(int $value) { return $this->set('total', $value); }
 
+    /**
+     *
+     * User id for the transaction
+     *
+     * @return string
+     */
+    public function getId() { return (string)$this->get('id'); }
+
+    /**
+     *
+     * Set User id for the transaction
+     * @param string $value
+     *
+     * @return static
+     */
+    public function setId(string $value) { return $this->set('id', $value); }
+
 
     /**
      * Currency code,
