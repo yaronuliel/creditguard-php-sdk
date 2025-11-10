@@ -205,6 +205,23 @@ class DoDealRedirectRequest extends AbstractRequest
      */
     public function setTotal(int $value) { return $this->set('total', $value); }
 
+    /**
+     *
+     * User id for the transaction
+     *
+     * @return string
+     */
+    public function getId() { return (string)$this->get('id'); }
+
+    /**
+     *
+     * Set User id for the transaction
+     * @param string $value
+     *
+     * @return static
+     */
+    public function setId(string $value) { return $this->set('id', $value); }
+
 
     /**
      * Currency code,
@@ -997,6 +1014,14 @@ class DoDealRedirectRequest extends AbstractRequest
 
     public function setPaymentPageAncestorURLs(array $ancestorUrls) {
         $this->frameAncestorURLs = $ancestorUrls;
+        return $this->updatePaymentPageData();
+    }
+
+    public function setUiCustomOption(string $key, $value) {
+        if(empty($key)) {
+            return $this;
+        }
+        $this->uiCustomData[$key] = $value;
         return $this->updatePaymentPageData();
     }
 
